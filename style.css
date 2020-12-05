@@ -20,6 +20,7 @@
 .main {
   position: relative;
 }
+
 /* desktop */
 
 @media screen and (min-width: 600px) {
@@ -28,7 +29,7 @@
     background-color: #001f3f;
     position: absolute;
     top: 0;
-    right: 50vw;
+    right: 50%;
     left: 0;
     bottom: 0;
   }
@@ -40,7 +41,7 @@
     top: 0;
     bottom: 0;
     right: 0;
-    left: 50vw;
+    left: 50%;
   }
 
   .lbrand {
@@ -91,4 +92,38 @@
 
 .sections {
   z-index: -7;
+}
+
+.translateBtn {
+  z-index: 1;
+}
+
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  text-align: center;
+  transform: translate(-50%, -50%);
+}
+
+.linput {
+  background-color: rgb(214, 230, 245);
+  box-shadow: 2px 2px 1px 1px var(--third-color);
+  border-radius: 10px;
+  border-color: white;
+  height: 100px;
+  width: 300px;
+}
+
+.rinput {
+  background-color: aliceblue;
+  box-shadow: 2px 2px 1px 1px var(--third-color);
+  border-radius: 10px;
+  border-color: white;
+  height: 100px;
+  width: 300px;
+}
+
+.linput:focus, .rinput:focus {
+  outline:none
 }
