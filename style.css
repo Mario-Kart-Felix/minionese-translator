@@ -67,14 +67,14 @@
     top: 0;
     right: 0;
     left: 0;
-    bottom: 50vh;
+    bottom: 50%;
   }
 
   .rsection {
     color: var(--first-color);
     background-color: #001f3f;
     position: absolute;
-    top: 50vh;
+    top: 50%;
     bottom: 0;
     right: 0;
     left: 0;
