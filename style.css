@@ -1,0 +1,40 @@
+:root {
+  --first-color:#ffd717;
+  --second-color: #001f3f;
+  --third-color: #0da574;
+  --fourth-color: #083358;
+
+}
+
+/* desktop */
+@media screen and (min-width: 600px) {
+  .rsection{
+    background-color: #ffd717;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 50vw;
+  }
+}
+/* mobile */
+
+@media screen and (max-width:600px) {
+  .lsection {
+    background-color: #ffd717;
+    position: absolute;
+    top: 0;
+    right:0;
+    left: 0;
+    bottom: 50vh;
+
+  }
+  .rsection {
+  background-color: #001f3f;
+  position: absolute;
+  top: 50vh;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  }
+}
