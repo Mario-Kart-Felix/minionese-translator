@@ -21,9 +21,18 @@
   position: relative;
 }
 
+
+
+.flex-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* width: 65px; */
+}
+
 /* desktop */
 
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 800px) {
   .lsection {
     color: var(--first-color);
     background-color: #001f3f;
@@ -56,11 +65,15 @@
   .mob {
     display: none;
   }
+
+  .switch-container {
+    flex-direction: row;
+  }
 }
 
 /* mobile */
 
-@media screen and (max-width:600px) {
+@media screen and (max-width:800px) {
   .lsection {
     color: var(--fourth-color);
     background-color: #ffd717;
@@ -90,12 +103,17 @@
   }
 }
 
+.switch-container {
+  float: right;
+}
+
 .sections {
   z-index: -7;
 }
 
 .translateBtn {
   z-index: 1;
+  font-size: 1.1rem;
 }
 
 .center {
@@ -112,18 +130,93 @@
   border-radius: 10px;
   border-color: white;
   height: 100px;
-  width: 300px;
+  width: 260px;
 }
 
 .rinput {
-  background-color: aliceblue;
+  background-color: rgb(214, 230, 245);
   box-shadow: 2px 2px 1px 1px var(--third-color);
   border-radius: 10px;
   border-color: white;
   height: 100px;
-  width: 300px;
+  width: 260px;
 }
 
-.linput:focus, .rinput:focus {
-  outline:none
+.linput:focus,
+.rinput:focus {
+  outline: none
+}
+
+.headerStyle {
+  padding: 0 0 1rem 0;
+  border-bottom: 2px dashed var(--fourth-color);
+}
+
+.zindex {
+  z-index: 1;
+}
+
+/* switch */
+
+.switch {
+  position: relative;
+  display: inline-block;
+  height: 34px;
+  width: 60px;
+}
+
+.switch switch-input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.switch-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #cccccc;
+  transition: .4s;
+}
+
+.switch-slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  top: 4px;
+  left: 4px;
+  background-color: white;
+  transition: .4s;
+}
+
+.switch-input:checked+.switch-slider {
+  background-color: var(--third-color);
+}
+
+.switch-input:focus+.switch-slider {
+  box-shadow: 0px 0px 1px gray;
+}
+
+.switch-input:checked+.switch-slider:before {
+  transform: translateX(26px)
+}
+
+/* rounded switch */
+
+.switch-slider.round {
+  border-radius: 34px;
+}
+
+.switch-slider.round:before {
+  border-radius: 50%;
+}
+
+
+.small {
+  font-size: 0.7rem;
+  color: var(--third-color)
 }

@@ -11,18 +11,26 @@
 <body>
 
   <main>
+    <div class="flex-container switch-container zindex">
+      <label class="switch">
+        <input class="switch-input" type="checkbox">
+        <span class="switch-slider round zindex"></span>
+      </label>
+      <small class="small zindex">Dynamic mode</small>
+    </div>
     <button class="translateBtn center">translate it!</button>
+
     <div class="sections">
       <section class="lsection">
         <div class="nav desk">
           <h2 class="lbrand">Minioniese</h2>
         </div>
         <div class="mob">
-          <h2 class="brand">Minioniese Translator</h2>
+          <h2 class="brand headerStyle">Minioniese Translator</h2>
         </div>
         <div class="center">
-          <div>english goes here</div>
-          <textarea class="linput"></textarea>
+          <p>english goes here</p>
+          <textarea class="linput" placeholder="enter stuff here..."></textarea>
         </div>
 
       </section>
@@ -33,9 +41,9 @@
         </div>
         <div class="center">
           <p>Minioniese comes here! 👇🏻</p>
-          <textarea class="rinput"></textarea>
+          <textarea class="rinput" placeholder="click translate it!"></textarea>
         </div>
-        
+
       </section>
     </div>
 
