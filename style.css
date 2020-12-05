@@ -1,14 +1,40 @@
+/* vars */
 :root {
-  --first-color:#ffd717;
+  --first-color: #ffd717;
   --second-color: #001f3f;
   --third-color: #0da574;
   --fourth-color: #083358;
-
+  box-sizing: border-box;
 }
 
+/* font */
+@font-face {
+  font-family: funk;
+  src: url(font/RoundyRainbows.otf)
+}
+
+* {
+  font-family: funk;
+}
+
+.main {
+  position: relative;
+}
 /* desktop */
+
 @media screen and (min-width: 600px) {
-  .rsection{
+  .lsection {
+    color: var(--first-color);
+    background-color: #001f3f;
+    position: absolute;
+    top: 0;
+    right: 50vw;
+    left: 0;
+    bottom: 0;
+  }
+
+  .rsection {
+    color: var(--fourth-color);
     background-color: #ffd717;
     position: absolute;
     top: 0;
@@ -16,25 +42,53 @@
     right: 0;
     left: 50vw;
   }
+
+  .lbrand {
+    text-align: right;
+    margin-right: 10px;
+  }
+
+  .rbrand {
+    margin-left: 10px;
+  }
+
+  .mob {
+    display: none;
+  }
 }
+
 /* mobile */
 
 @media screen and (max-width:600px) {
   .lsection {
+    color: var(--fourth-color);
     background-color: #ffd717;
     position: absolute;
     top: 0;
-    right:0;
+    right: 0;
     left: 0;
     bottom: 50vh;
+  }
 
-  }
   .rsection {
-  background-color: #001f3f;
-  position: absolute;
-  top: 50vh;
-  bottom: 0;
-  right: 0;
-  left: 0;
+    color: var(--first-color);
+    background-color: #001f3f;
+    position: absolute;
+    top: 50vh;
+    bottom: 0;
+    right: 0;
+    left: 0;
   }
+
+  .desk {
+    display: none;
+  }
+
+  .brand {
+    text-align: center;
+  }
+}
+
+.sections {
+  z-index: -7;
 }
