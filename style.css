@@ -66,8 +66,8 @@
     display: none;
   }
 
-  .switch-container {
-    flex-direction: row;
+  .translateBtn {
+    margin: 1rem 0;
   }
 }
 
@@ -101,10 +101,17 @@
   .brand {
     text-align: center;
   }
-}
 
-.switch-container {
-  float: right;
+  .translate-container {
+    flex-direction: row;
+
+  }
+
+  .translateBtn {
+    margin: 0 1rem;
+  }
+
+
 }
 
 .sections {
@@ -219,4 +226,16 @@
 .small {
   font-size: 0.7rem;
   color: var(--third-color)
+}
+
+.reset {
+  background-color: #efefef;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border-radius: 5px;
+  margin: 0 5px 5px 0;
+}
+
+.switch-container {
+  margin: 5px 0 0 5px;
 }
