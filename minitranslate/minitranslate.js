@@ -1,0 +1,149 @@
+/**
+ * minitranslate.js
+ * www.minitranslate.me
+ *
+ * @version
+ * 1.2.0 (Oct 17 2014)
+ *
+ * @license
+ * The MIT license.
+ */
+var inp = document.getElementById("mt-input");
+var outp = document.getElementById("mt-output");
+
+function keyupHandler() {
+  if (inp.getAttribute("class").indexOf('mt-patient') === -1) {
+    outp.value = inp.value;
+    mt(mt_lib, outp);
+  }
+}
+
+function mt(mt_lib, div) {
+  if ((div.innerHTML !== '' || div.value !== '') && (mt_lib.length > 0 && div.getAttribute("class") !== "mt-ignore")) {
+    if (div.children.length > 0) {
+      Array.prototype.forEach.call(div.children, function (el) {
+        if (el.getAttribute("class") !== "mt-ignore") {
+          apply_translation(el);
+        }
+      });
+    } else {
+      apply_translation(div);
+    }
+  }
+}
+
+function apply_translation(div) {
+  var d = delouse(div);
+  iterate_lib(d[0], mt_lib);
+  append_punctuation(d[0], d[1]);
+  write_changes(div, d[0]);
+}
+
+function append_punctuation(txt, punct) {
+  punct.map(function (p) {
+    txt[p.idx] += p.c;
+  });
+}
+
+function write_changes(item, array) {
+  var txt = array.join(" ");
+  if (item.id === "mt-output") {
+    item.value = txt;
+  } else {
+    item.innerHTML = txt;
+  }
+}
+
+// Sanitizes & saves punctuation
+function delouse(item) {
+  var txt = (item.id === "mt-output") ? item.value : item.innerText;
+  var tmp = txt.split(" ");
+  var punct = get_punct(tmp);
+  var txt_arr = txt.replace(/[\.,-\/#!?$%\^&\*;:{}=\-_`~()]/g, "").split(" ");
+  return [txt_arr, punct];
+}
+
+function iterate_lib(t, mt_lib) {
+  for (var j = 0; j < t.length; j++) {
+    mt_lib.every(function (entry) {
+      if (t[j].toLowerCase() === entry.w.toLowerCase()) {
+        var capitals = detect_capitals(t[j]);
+        t[j] = apply_capitals(entry.r, capitals);
+        return false;
+      } else {
+        return true
+      };
+    });
+  }
+}
+
+function get_punct(tmp) {
+  var keep = [];
+  tmp.map(function (b, i) {
+    b.split('').map(function (c) {
+      if (c === "!" || c === "?" || c === "," || c === ".") {
+        keep.push(new Pun(c, i));
+      }
+    });
+  });
+  return keep;
+}
+
+function detect_capitals(word) {
+  return word.split('').map(function (letter, i) {
+    return (word.charAt(i) >= "A" && word.charAt(i) <= "Z") ? 1 : 0;
+  });
+}
+
+function apply_capitals(word, capitals) {
+  var ret = "";
+  var end = (word.length >= capitals.length) ? capitals.length : word.length;
+  for (var i = 0; i < end; i++) {
+    if (capitals[i]) {
+      ret += word.charAt(i).toUpperCase();
+    } else {
+      ret += word.charAt(i).toLowerCase();
+    }
+  }
+  if (word.length >= capitals.length) {
+    ret += word.substr(i, word.length - i);
+  }
+  return ret;
+}
+
+// Associates index & char
+function Pun(c, i) {
+  this.c = c;
+  this.idx = i;
+}
+
+// Static
+function mt_translate(mt_lib) {
+  Array.prototype.forEach.call(document.querySelectorAll(".mt-translate"), function (el) {
+    mt(mt_lib, el);
+  });
+}
+
+// Dynamic
+function mt_watch(mt_lib, bool) {
+
+  var butt = document.getElementById("mt-button");
+  if (inp !== null && outp !== null && bool) {
+    if (butt) {
+      butt.onclick = function () {
+        outp.value = inp.value;
+        mt(mt_lib, outp);
+      };
+    }
+    inp.addEventListener('keyup', keyupHandler)
+
+  } else {
+    inp.removeEventListener('keyup', keyupHandler)
+  }
+}
+
+function unmount_watch(bool) {
+  mt_watch(mt_lib, bool)
+}
+
+mt_translate(mt_lib);
